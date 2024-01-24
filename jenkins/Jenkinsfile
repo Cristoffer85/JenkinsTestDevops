@@ -25,7 +25,7 @@ pipeline {
          stage("deploy") {
                     steps {
                         sh 'chmod +x ./jenkins/script/deliver.sh'  // Ensure execution permission
-                        sh './jenkins/script/deliver.sh'
+                        //sh './jenkins/script/deliver.sh'
                     }
                 }
             }
