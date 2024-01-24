@@ -34,4 +34,14 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            script {
+                // Checks API configuration
+                echo 'Setting up Checks API...'
+                checks-api publishChecks checkName: 'Tests', reportFiles: 'target/surefire-reports/*.xml'
+            }
+        }
+    }
 }
