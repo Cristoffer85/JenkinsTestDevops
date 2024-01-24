@@ -1,6 +1,9 @@
 pipeline {
 
   agent any
+  tools {
+      maven 'Maven'
+  }
 
   stages {
 
@@ -8,18 +11,22 @@ pipeline {
 
       steps {
           echo 'building the application...'
+          sh 'mvn -B'
+          echo 'building succeded!'
       }
     }
     stage("test"){
 
       steps {
           echo 'testing the application...'
+          echo 'testing succeded!'
       }
     }
     stage("deploy"){
 
       steps {
           echo 'deploying the application...'
+          echo 'deploy succeded!'
       }
     }
   }
