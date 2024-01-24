@@ -24,8 +24,7 @@ pipeline {
         }
         stage("deploy") {
             steps {
-                echo 'deploying the application...'
-                echo 'deploy succeeded!'
+                sh './jenkins/delivery.sh'
             }
         }
     }
