@@ -21,12 +21,13 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
-        }
+
         stage("deploy") {
             steps {
                 sh './jenkins/delivery.sh'
             }
         }
     }
+}
 }
 
