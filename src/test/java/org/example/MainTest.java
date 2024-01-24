@@ -1,22 +1,25 @@
 package org.example;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MainTest {
-
+/**
+ * Unit test for simple App.
+ */
+public class MainTest
+{
     @Test
-    public void main() {
-        Main main1 = new Main();
-        Main main2 = new Main();
-
-        assertEquals(main1.add(), main2.add());
+    public void testAppConstructor() {
+        Main app1 = new Main();
+        Main app2 = new Main();
+        assertEquals(app1.getMessage(), app2.getMessage());
     }
 
     @Test
-    public void add() {
-        Main main = new Main();
-        assertEquals(main.add(), 10);
+    public void testAppMessage()
+    {
+        Main app = new Main();
+        assertEquals("Hello World!", app.getMessage());
     }
 }

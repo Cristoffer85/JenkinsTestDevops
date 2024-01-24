@@ -2,15 +2,15 @@ package org.example;
 
 public class Main {
 
-    private static String myMessage = "Hello World!";
-    private static int myNumber1 = 3;
-    private static int myNumber2 = 7;
+    private static final String MESSAGE = "Hello World!";
+
+    public void App() {}
+
     public static void main(String[] args) {
-        System.out.println(String.format("%s, number %d", myMessage, myNumber1 + myNumber2));
+        System.out.println(MESSAGE);
     }
 
-    public static int add(){
-        int sum = myNumber1 + myNumber2;
-        return sum;
+    public String getMessage() {
+        return MESSAGE;
     }
 }
