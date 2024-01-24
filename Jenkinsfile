@@ -11,7 +11,7 @@ pipeline {
 
       steps {
           echo 'building the application...'
-          sh 'mvn -B'
+          sh 'mvn clean install'
           echo 'building succeded!'
       }
     }
