@@ -18,8 +18,13 @@ pipeline {
     stage("test"){
 
       steps {
+          sh 'mvn test'
           echo 'testing the application...'
           echo 'testing succeded!'
+      }
+        post {
+            always {
+                junit 'target/surefire-reports/*.xml'
       }
     }
     stage("deploy"){
