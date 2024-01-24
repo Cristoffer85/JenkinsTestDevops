@@ -5,25 +5,28 @@ pipeline {
     }
 
     stages {
-            stage('Build') {
-                steps {
-                    sh 'mvn -B -DskipTests clean package'
-                }
+        stage("build") {
+            steps {
+                echo 'building the application...'
+                sh 'mvn -B clean package'
+                echo 'building succeeded!'
             }
-            stage('Test') {
-                steps {
-                    sh 'mvn test'
-                }
-                post {
-                    always {
-                        junit 'target/surefire-reports/*.xml'
-                    }
-                }
+        }
+        stage("test") {
+            steps {
+                sh 'mvn test'
             }
-            stage('Deliver') {
-                steps {
-                    sh './jenkins/scripts/deliver.sh'
+            post {
+                always {
+                    junit 'target/surefire-reports/TEST-MainTest.xml'
                 }
             }
         }
+        stage("deploy") {
+            steps {
+                sh './jenkins/delivery.sh'
+            }
+        }
     }
+}
+
