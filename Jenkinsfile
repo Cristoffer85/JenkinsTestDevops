@@ -14,11 +14,17 @@ pipeline {
         }
         stage("test") {
             steps {
-                sh 'mvn test'
+                script {
+                    // Run tests and copy XML files to the workspace
+                    sh 'mvn test'
+                    dir('target/surefire-reports') {
+                        cp '*.xml', '$WORKSPACE'
+                    }
+                }
             }
             post {
                 always {
-                    junit allowEmptyResults: true, testResults: '**/surefire-reports/*.xml'
+                    junit '*.xml'
                 }
             }
         }
@@ -29,4 +35,3 @@ pipeline {
         }
     }
 }
-
