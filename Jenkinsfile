@@ -23,10 +23,10 @@ pipeline {
             }
         }
         stage("deploy") {
-            steps {
-                sh './jenkins/delivery.sh'
+                    steps {
+                        sh 'chmod +x ./jenkins/delivery.sh'  // Ensure execution permission
+                        sh './jenkins/delivery.sh'
+                    }
+                }
             }
         }
-    }
-}
-
