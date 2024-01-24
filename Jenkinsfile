@@ -14,17 +14,11 @@ pipeline {
         }
         stage("test") {
             steps {
-                script {
-                    // Run tests and copy XML files to the workspace
-                    sh 'mvn test'
-                    dir('target/surefire-reports') {
-                        cp '*.xml', '$WORKSPACE'
-                    }
-                }
+                sh 'mvn test'
             }
             post {
                 always {
-                    junit '*.xml'
+                    junit allowEmptyResults: true, testResults: '**/surefire-reports/*.xml'
                 }
             }
         }
@@ -34,14 +28,5 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            script {
-                // Checks API configuration
-                echo 'Setting up Checks API...'
-                checks-api publishChecks checkName: 'Tests', reportFiles: 'target/surefire-reports/*.xml'
-            }
-        }
-    }
 }
+
